@@ -33,10 +33,11 @@ public enum InetnumStatus implements InetStatus {
     private static final EnumSet<InetnumStatus> NEEDS_ORG_REFERENCE = EnumSet.of(ALLOCATED_PI, ALLOCATED_PA, ALLOCATED_UNSPECIFIED);
     private static final EnumSet<InetnumStatus> NEEDS_PARENT_RS_MNTR = EnumSet.of(ALLOCATED_UNSPECIFIED, ALLOCATED_PI);
 
+    // which parent statuses are allowed for a given status
     private static final EnumMap<InetnumStatus, EnumSet<InetnumStatus>> PARENT_STATUS;
 
     static {
-        PARENT_STATUS = new EnumMap(InetnumStatus.class);
+        PARENT_STATUS = new EnumMap<>(InetnumStatus.class);
         PARENT_STATUS.put(ALLOCATED_PI, EnumSet.of(ALLOCATED_UNSPECIFIED));
         PARENT_STATUS.put(ALLOCATED_PA, EnumSet.of(ALLOCATED_UNSPECIFIED));
         PARENT_STATUS.put(ALLOCATED_UNSPECIFIED, EnumSet.of(ALLOCATED_UNSPECIFIED));
@@ -102,7 +103,9 @@ public enum InetnumStatus implements InetStatus {
             if (parentHasRsMntLower) {
                 return false;
             }
-        } else if (this == ASSIGNED_PA && parentInHierarchyMaintainedByRs == ALLOCATED_PA) {
+        }
+
+        if (this == ASSIGNED_PA && parentInHierarchyMaintainedByRs == ALLOCATED_PA) {
             return false;
         }
 
