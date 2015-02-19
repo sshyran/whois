@@ -21,7 +21,8 @@ public class InetnumStatusTest {
 
     @Test
     public void parentVerification() {
-        assertThat(ASSIGNED_PA.worksWithParentStatus(ASSIGNED_PA, true), is(true));
+        assertThat(ASSIGNED_PA.worksWithParentStatus(ASSIGNED_PA, true), is(false));
+        assertThat(ASSIGNED_PA.worksWithParentStatus(ASSIGNED_PA, false), is(false));
         assertThat(ASSIGNED_PA.worksWithParentStatus(EARLY_REGISTRATION, true), is(true));
         assertThat(ASSIGNED_PA.worksWithParentStatus(SUB_ALLOCATED_PA, true), is(true));
         assertThat(ASSIGNED_PA.worksWithParentStatus(LIR_PARTITIONED_PI, true), is(false));

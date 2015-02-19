@@ -208,7 +208,7 @@ public class StatusValidatorTest {
 
         subject.validate(update, updateContext);
 
-        verify(updateContext, never()).addMessage(update, UpdateMessages.incorrectParentStatus(ObjectType.INETNUM, "ASSIGNED PA"));
+        verify(updateContext).addMessage(update, UpdateMessages.incorrectParentStatus(ObjectType.INETNUM, "ASSIGNED PA"));
     }
 
     @Test
