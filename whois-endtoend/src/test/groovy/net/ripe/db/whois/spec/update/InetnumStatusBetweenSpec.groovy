@@ -2,7 +2,6 @@ package net.ripe.db.whois.spec.update
 import net.ripe.db.whois.common.IntegrationTest
 import net.ripe.db.whois.spec.BaseQueryUpdateSpec
 import net.ripe.db.whois.spec.domain.AckResponse
-import spock.lang.Ignore
 
 @org.junit.experimental.categories.Category(IntegrationTest.class)
 class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
@@ -2142,7 +2141,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
         queryObjectNotFound("-r -T inetnum 192.100.0.0 - 192.200.255.255", "inetnum", "192.100.0.0 - 192.200.255.255")
     }
 
-    @Ignore("TODO: confirmed issue - this scenario shouldn't succeed")
     def "create between user ALLOCATED PA and ASSIGNED PA, with status ASSIGNED PA"() {
       given:
         syncUpdate(getTransient("USER-ALLOC-PA") + "password: owner3\npassword: hm\npassword: lir")
@@ -2154,7 +2152,7 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
         queryObjectNotFound("-r -T inetnum 192.100.0.0 - 192.200.255.255", "inetnum", "192.100.0.0 - 192.200.255.255")
 
       when:
-      def message = syncUpdate("""
+        def message = syncUpdate("""
                 inetnum:      192.100.0.0 - 192.200.255.255
                 netname:      TEST-NET-NAME
                 descr:        TEST network
@@ -2174,7 +2172,7 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
         )
 
       then:
-      def ack = new AckResponse("", message)
+        def ack = new AckResponse("", message)
 
         ack.summary.nrFound == 1
         ack.summary.assertSuccess(0, 0, 0, 0, 0)
@@ -3228,10 +3226,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
         queryObject("-r -T inetnum 192.168.100.0 - 192.168.200.255", "inetnum", "192.168.100.0 - 192.168.200.255")
     }
 
-    // TODO: confirmed issue, for two reasons:
-    //      (1) cannot have hierarchy of assignments
-    //      (2) cannot have an assignment under an allocated unspecified
-    @Ignore("TODO: failing test")
     def "create between ALLOCATED UNSPECIFIED and ASSIGNED PA, with status ASSIGNED PA"() {
         given:
         syncUpdate(getTransient("ALLOC-UNS") + "password: owner3\npassword: hm")
