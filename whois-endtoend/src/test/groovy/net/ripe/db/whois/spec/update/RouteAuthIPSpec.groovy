@@ -1,5 +1,4 @@
 package net.ripe.db.whois.spec.update
-
 import net.ripe.db.whois.common.IntegrationTest
 import net.ripe.db.whois.spec.BaseQueryUpdateSpec
 import net.ripe.db.whois.spec.domain.AckResponse
@@ -152,7 +151,7 @@ class RouteAuthIPSpec extends BaseQueryUpdateSpec {
                 country: EU
                 admin-c: TP1-TEST
                 tech-c:  TP1-TEST
-                status:  ASSIGNED PA
+                status:  LIR-PARTITIONED PA
                 mnt-by:  PARENT-INETNUM-MB-MNT
                 changed:     dbtest@ripe.net
                 source:      TEST
@@ -176,7 +175,7 @@ class RouteAuthIPSpec extends BaseQueryUpdateSpec {
                 country: EU
                 admin-c: TP1-TEST
                 tech-c:  TP1-TEST
-                status:  ASSIGNED PA
+                status:  LIR-PARTITIONED PA
                 mnt-by:  PARENT-INETNUM-MB-MNT
                 changed:     dbtest@ripe.net
                 source:      TEST
@@ -200,7 +199,7 @@ class RouteAuthIPSpec extends BaseQueryUpdateSpec {
                 country: EU
                 admin-c: TP1-TEST
                 tech-c:  TP1-TEST
-                status:  ASSIGNED PA
+                status:  LIR-PARTITIONED PA
                 mnt-by:  PARENT-INETNUM-MB-MNT
                 changed:     dbtest@ripe.net
                 source:      TEST
