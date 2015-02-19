@@ -847,6 +847,7 @@ class BasicFixtures {
                 netname:      RIPE-NET1
                 descr:        /16 ERX
                 country:      NL
+                remarks:      object does NOT have status attribute
                 admin-c:      TP1-TEST
                 tech-c:       TP1-TEST
                 mnt-by:       LIR-MNT
