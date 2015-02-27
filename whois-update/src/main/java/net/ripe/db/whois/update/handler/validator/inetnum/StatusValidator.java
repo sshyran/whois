@@ -277,7 +277,6 @@ public class StatusValidator implements BusinessRuleValidator {
         }
 
         try {
-            //TODO initial get status was  getStatus(update); and getStatus was calling getUpdatedObject
             currentStatus = InetStatusHelper.getStatus(update.getReferenceObject());
             if (currentStatus == null) {
                 // invalid status attribute value
