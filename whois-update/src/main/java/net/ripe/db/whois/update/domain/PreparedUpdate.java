@@ -44,6 +44,11 @@ public class PreparedUpdate implements UpdateContainer {
     }
 
     //TODO [TP] get referencedObject should never be null. Check first and then remove @Nullable
+    /*
+        if action == CREATE reference obj = updatedObject
+        if action == DELETE reference obj = originalObject
+        if action == MODIFY reference obj = originalObject
+     */
     @Nullable
     public RpslObject getReferenceObject() {
         if (originalObject != null) {
