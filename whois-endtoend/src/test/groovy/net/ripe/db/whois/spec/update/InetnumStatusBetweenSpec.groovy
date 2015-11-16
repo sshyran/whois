@@ -20,7 +20,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED UNSPECIFIED
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    RIPE-NCC-HM-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "ALLOC-UNS2": """\
@@ -34,7 +33,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED UNSPECIFIED
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    RIPE-NCC-HM-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "ALLOC-PA": """\
@@ -49,7 +47,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
                 mnt-lower:    LIR2-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "USER-ALLOC-PA": """\
@@ -64,7 +61,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
                 mnt-lower:    LIR2-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "ALLOC-PA2": """\
@@ -79,7 +75,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
                 mnt-lower:    LIR2-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "ALLOC-PI": """\
@@ -94,7 +89,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
                 mnt-lower:    LIR2-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "ALLOC-PI2": """\
@@ -109,7 +103,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
                 mnt-lower:    LIR2-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "USER-ALLOC-PI": """\
@@ -124,7 +117,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
                 mnt-lower:    LIR2-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "PART-PA": """\
@@ -136,7 +128,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 tech-c:       TP1-TEST
                 status:       LIR-PARTITIONED PA
                 mnt-by:       LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "PART-PI": """\
@@ -148,7 +139,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 tech-c:       TP1-TEST
                 status:       LIR-PARTITIONED PI
                 mnt-by:       LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "SUB-ALLOC-PA": """\
@@ -162,7 +152,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       SUB-ALLOCATED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    SUB-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "ASS-END": """\
@@ -174,7 +163,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 tech-c:       TP1-TEST
                 status:       ASSIGNED PA
                 mnt-by:       END-USER-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "ASSPI": """\
@@ -188,7 +176,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-by:       LIR-MNT
                 mnt-lower:    RIPE-NCC-HM-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "ASSANY": """\
@@ -201,7 +188,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED ANYCAST
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-by:       LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "LEGACYROOT": """\
@@ -213,7 +199,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 tech-c:       TP1-TEST
                 status:       LEGACY
                 mnt-by:       LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
             "LEGACY": """\
@@ -225,7 +210,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 tech-c:       TP1-TEST
                 status:       LEGACY
                 mnt-by:       LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 """,
     ]}
@@ -252,7 +236,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED UNSPECIFIED
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -293,7 +276,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -338,7 +320,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -383,7 +364,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -428,7 +408,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -473,7 +452,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       SUB-ALLOCATED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -518,7 +496,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -563,7 +540,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -607,7 +583,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED ANYCAST
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -651,7 +626,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LEGACY
                 mnt-by:       lir-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -697,7 +671,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       NOT-SET
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -742,7 +715,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED UNSPECIFIED
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -784,7 +756,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -829,7 +800,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -874,7 +844,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -919,7 +888,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -964,7 +932,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       SUB-ALLOCATED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1009,7 +976,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1054,7 +1020,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1098,7 +1063,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED ANYCAST
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1142,7 +1106,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LEGACY
                 mnt-by:       lir-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1188,7 +1151,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       NOT-SET
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1234,7 +1196,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED UNSPECIFIED
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1276,7 +1237,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1321,7 +1281,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1366,7 +1325,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1411,7 +1369,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1456,7 +1413,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       SUB-ALLOCATED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1501,7 +1457,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1546,7 +1501,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1590,7 +1544,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED ANYCAST
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1634,7 +1587,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LEGACY
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1680,7 +1632,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       NOT-SET
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1726,7 +1677,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -1769,7 +1719,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       SUB-ALLOCATED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -1811,7 +1760,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -1855,7 +1803,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       NOT-SET
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
                 override:       denis,override1
 
@@ -1901,7 +1848,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -1943,7 +1889,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       SUB-ALLOCATED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -1985,7 +1930,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -2031,7 +1975,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -2073,7 +2016,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       SUB-ALLOCATED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -2119,7 +2061,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -2163,7 +2104,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -2210,7 +2150,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PI
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -2256,7 +2195,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -2301,7 +2239,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PI
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -2348,7 +2285,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED UNSPECIFIED
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2390,7 +2326,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2435,7 +2370,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2478,7 +2412,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2523,7 +2456,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2568,7 +2500,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       SUB-ALLOCATED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2613,7 +2544,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2658,7 +2588,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2702,7 +2631,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED ANYCAST
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2746,7 +2674,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LEGACY
                 mnt-by:       lir-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2793,7 +2720,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED UNSPECIFIED
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2836,7 +2762,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PA
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2882,7 +2807,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ALLOCATED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2928,7 +2852,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PA
                 mnt-by:       liR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -2974,7 +2897,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LIR-PARTITIONED PI
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -3020,7 +2942,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       lIr-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -3067,7 +2988,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -3112,7 +3032,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED ANYCAST
                 mnt-by:       RIPE-NCC-HM-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -3157,7 +3076,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       LEGACY
                 mnt-by:       lir-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
@@ -3203,7 +3121,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: owner3
@@ -3248,7 +3165,6 @@ class InetnumStatusBetweenSpec extends BaseQueryUpdateSpec {
                 status:       ASSIGNED PA
                 mnt-by:       LIR-MNT
                 mnt-lower:    LIR-MNT
-                changed:      dbtest@ripe.net 20020101
                 source:       TEST
 
                 password: hm
