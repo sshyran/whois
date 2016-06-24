@@ -120,22 +120,6 @@ public final class UpdateMessages {
         return new Message(Type.ERROR, "Automatic creation of %s objects of this size in not allowed, please contact lir-help@ripe.net for further information.", type);
     }
 
-    public static Message invalidDateFormat() {
-        return new Message(Type.ERROR, "Invalid date format, expected YYYYMMDD");
-    }
-
-    public static Message invalidDate(final CharSequence date) {
-        return new Message(Type.ERROR, "Date is older than the database itself in changed: attribute \"%s\"", date);
-    }
-
-    public static Message dateTooFuturistic(final CharSequence date) {
-        return new Message(Type.ERROR, "Date is in the future in changed: attribute \"%s\"", date);
-    }
-
-    public static Message multipleMissingChangeDates() {
-        return new Message(Type.ERROR, "More than one \"changed:\" attribute without date");
-    }
-
     // NOTE: this errormessage is being used by webupdates.
     public static Message authenticationFailed(final RpslObject object, final AttributeType attributeType, final Iterable<RpslObject> candidates) {
         final CharSequence joined = LIST_JOINED.join(
@@ -260,6 +244,11 @@ public final class UpdateMessages {
     // NOTE: this errormessage is being used by webupdates.
     public static Message authorisationRequiredForAttrChange(final AttributeType attributeType) {
         return new Message(Type.ERROR, "Changing \"%s:\" value requires administrative authorisation", attributeType.getName());
+    }
+
+    public static Message canOnlyBeChangedByRipeNCC(final AttributeType attributeType) {
+        return new Message(Type.ERROR, "Attribute \"%s:\" can only be changed by the RIPE NCC for this object.\n" +
+                "Please contact \"ncc@ripe.net\" to change it.", attributeType.getName());
     }
 
     public static Message orgAttributeMissing() {
@@ -601,5 +590,17 @@ public final class UpdateMessages {
 
     public static Message oldPasswordsRemoved() {
         return new Message(Type.WARNING, "MD5 passwords older than November 2011 were removed for one or more maintainers of this object, see: https://www.ripe.net/removed2011pw");
+    }
+
+    public static Message rpslMntbyForbidden() {
+        return new Message(Type.ERROR, "You cannot set mnt-by on this object to RIPE-NCC-RPSL-MNT");
+    }
+
+    public static Message netnameCannotBeChanged() {
+        return new Message(Type.ERROR, "The \"netname\" attribute can only be changed by the RIPE NCC");
+    }
+
+    public static Message multipleUserMntBy(Object[] userMntners) {
+        return new Message(Type.ERROR, "Multiple user-'mnt-by:' are not allowed, found are: '%s'", Joiner.on(", ").join(userMntners));
     }
 }
