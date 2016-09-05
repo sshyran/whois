@@ -2,10 +2,12 @@ package net.ripe.db.whois.api.rest;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import net.ripe.db.whois.api.rest.domain.ActionRequest;
 import net.ripe.db.whois.api.rest.domain.ErrorMessage;
 import net.ripe.db.whois.api.rest.domain.Link;
 import net.ripe.db.whois.api.rest.domain.WhoisObject;
 import net.ripe.db.whois.api.rest.domain.WhoisResources;
+import net.ripe.db.whois.api.rest.enums.SsoAuthType;
 import net.ripe.db.whois.api.rest.mapper.WhoisObjectMapper;
 import net.ripe.db.whois.common.DateTimeProvider;
 import net.ripe.db.whois.common.Message;
@@ -34,9 +36,13 @@ import net.ripe.db.whois.update.domain.UpdateStatus;
 import net.ripe.db.whois.update.handler.UpdateRequestHandler;
 import net.ripe.db.whois.update.log.LogCallback;
 import net.ripe.db.whois.update.log.LoggerContext;
+import net.ripe.db.whois.update.sso.SsoTranslator;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.WebApplicationException;
@@ -60,18 +66,21 @@ public class InternalUpdatePerformer {
     private final WhoisObjectMapper whoisObjectMapper;
     private final LoggerContext loggerContext;
     private final SsoTokenTranslator ssoTokenTranslator;
+    private final SsoTranslator ssoTranslator;
 
     @Autowired
     public InternalUpdatePerformer(final UpdateRequestHandler updateRequestHandler,
                                    final DateTimeProvider dateTimeProvider,
                                    final WhoisObjectMapper whoisObjectMapper,
                                    final LoggerContext loggerContext,
-                                   final SsoTokenTranslator ssoTokenTranslator) {
+                                   final SsoTokenTranslator ssoTokenTranslator,
+                                   final SsoTranslator ssoTranslator) {
         this.updateRequestHandler = updateRequestHandler;
         this.dateTimeProvider = dateTimeProvider;
         this.whoisObjectMapper = whoisObjectMapper;
         this.loggerContext = loggerContext;
         this.ssoTokenTranslator = ssoTokenTranslator;
+        this.ssoTranslator = ssoTranslator;
     }
 
     public UpdateContext initContext(final Origin origin, final String ssoToken) {
@@ -85,6 +94,10 @@ public class InternalUpdatePerformer {
         loggerContext.remove();
     }
 
+    private void auditlogRequest(final HttpServletRequest request) {
+        loggerContext.log(new HttpRequestMessage(request));
+    }
+
     public WhoisResources performUpdate(final UpdateContext updateContext, final Origin origin, final Update update, final Keyword keyword, final HttpServletRequest request) {
         return performUpdates(updateContext, origin, Collections.singletonList(update), keyword, request);
     }
@@ -95,6 +108,79 @@ public class InternalUpdatePerformer {
         updateRequestHandler.handle(new UpdateRequest(origin, keyword, updates), updateContext);
 
         return performUpdates(request, updateContext, updates);
+    }
+
+    /**
+     * Update multiple objects in the database. Rollback if any update fails.
+     * Must be public for Transaction-annotation to have effect
+     */
+    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
+    public WhoisResources performUpdates(
+            final HttpServletRequest request,
+            final List<ActionRequest> actionRequests,
+            final List<String> passwords,
+            final String crowdTokenKey,
+            final String override,
+            final SsoAuthType ssoAuthMethod) {
+
+        try {
+            final Origin origin = createOrigin(request);
+            final UpdateContext updateContext = initContext(origin, crowdTokenKey);
+            updateContext.batchUpdate();
+            auditlogRequest(request);
+
+            final List<Update> updates = Lists.newArrayList();
+            for (ActionRequest actionRequest : actionRequests) {
+                final String deleteReason = net.ripe.db.whois.api.rest.domain.Action.DELETE.equals(actionRequest.getAction()) ? "--" : null;
+
+                final RpslObject rpslObject;
+                if (ssoAuthMethod == SsoAuthType.UUID){
+                    ssoTranslator.populateCacheAuthToUsername(updateContext, actionRequest.getRpslObject());
+                    rpslObject = ssoTranslator.translateFromCacheAuthToUsername(updateContext, actionRequest.getRpslObject());
+                } else {
+                    rpslObject = actionRequest.getRpslObject();
+                }
+                updates.add(createUpdate(updateContext, rpslObject, passwords, deleteReason, override));
+            }
+
+            final WhoisResources whoisResources = performUpdates(updateContext, origin, updates, Keyword.NONE, request);
+
+            for (Update update : updates) {
+                final UpdateStatus status = updateContext.getStatus(update);
+
+                if (status == UpdateStatus.SUCCESS) {
+                    // continue
+                } else if (status == UpdateStatus.FAILED_AUTHENTICATION) {
+                    throw new UpdateFailedException(Response.Status.UNAUTHORIZED, whoisResources);
+                } else if (status == UpdateStatus.EXCEPTION) {
+                    throw new UpdateFailedException(Response.Status.INTERNAL_SERVER_ERROR, whoisResources);
+                } else if (updateContext.getMessages(update).contains(UpdateMessages.newKeywordAndObjectExists())) {
+                    throw new UpdateFailedException(Response.Status.CONFLICT, whoisResources);
+                } else {
+                    throw new UpdateFailedException(Response.Status.BAD_REQUEST, whoisResources);
+                }
+            }
+
+            return whoisResources;
+
+        } catch (UpdateFailedException e) {
+            throw e;
+        } catch (Exception e) {
+            logError(e);
+            throw e;
+        } finally {
+            closeContext();
+        }
+    }
+
+    private class UpdateFailedException extends RuntimeException {
+        private final WhoisResources whoisResources;
+        private final Response.Status status;
+
+        public UpdateFailedException(Response.Status status, WhoisResources whoisResources) {
+            this.status = status;
+            this.whoisResources = whoisResources;
+        }
     }
 
     public Response createResponse(final UpdateContext updateContext, final WhoisResources whoisResources, final Update update, final HttpServletRequest request) {

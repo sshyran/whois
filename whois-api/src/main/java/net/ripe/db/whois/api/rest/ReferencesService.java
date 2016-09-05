@@ -15,6 +15,7 @@ import net.ripe.db.whois.api.rest.domain.Attribute;
 import net.ripe.db.whois.api.rest.domain.ErrorMessage;
 import net.ripe.db.whois.api.rest.domain.WhoisObject;
 import net.ripe.db.whois.api.rest.domain.WhoisResources;
+import net.ripe.db.whois.api.rest.enums.SsoAuthType;
 import net.ripe.db.whois.api.rest.mapper.FormattedServerAttributeMapper;
 import net.ripe.db.whois.api.rest.mapper.WhoisObjectMapper;
 import net.ripe.db.whois.common.Message;
@@ -186,7 +187,7 @@ public class ReferencesService {
             final RpslObject updatedMntner = replaceAdminC(mntner, "AUTO-1");
             actionRequests.add(new ActionRequest(updatedMntner, Action.MODIFY));
 
-            final WhoisResources whoisResources = performUpdates(request, actionRequests, passwords, crowdTokenKey, null, SsoAuthForm.ACCOUNT);
+            final WhoisResources whoisResources = updatePerformer.performUpdates(request, actionRequests, passwords, crowdTokenKey, null, SsoAuthType.ACCOUNT);
             return createResponse(request, filterWhoisObjects(whoisResources), Response.Status.OK);
 
         } catch (WebApplicationException e) {
@@ -225,69 +226,6 @@ public class ReferencesService {
         final RpslObjectBuilder builder = new RpslObjectBuilder(mntnerObject);
         builder.replaceAttribute(mntnerObject.findAttribute(AttributeType.ADMIN_C), new RpslAttribute(AttributeType.ADMIN_C, adminC));
         return builder.get();
-    }
-
-    /**
-     * Update multiple objects in the database. Rollback if any update fails.
-     * Must be public for Transaction-annotation to have effect
-     */
-    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
-    public WhoisResources performUpdates(
-            final HttpServletRequest request,
-            final List<ActionRequest> actionRequests,
-            final List<String> passwords,
-            final String crowdTokenKey,
-            final String override,
-            final SsoAuthForm ssoAuthForm) {
-
-        try {
-            final Origin origin = updatePerformer.createOrigin(request);
-            final UpdateContext updateContext = updatePerformer.initContext(origin, crowdTokenKey);
-            updateContext.batchUpdate();
-            auditlogRequest(request);
-
-            final List<Update> updates = Lists.newArrayList();
-            for (ActionRequest actionRequest : actionRequests) {
-                final String deleteReason = Action.DELETE.equals(actionRequest.getAction()) ? "--" : null;
-
-                final RpslObject rpslObject;
-                if (ssoAuthForm == SsoAuthForm.UUID){
-                    ssoTranslator.populateCacheAuthToUsername(updateContext, actionRequest.getRpslObject());
-                    rpslObject = ssoTranslator.translateFromCacheAuthToUsername(updateContext, actionRequest.getRpslObject());
-                } else {
-                    rpslObject = actionRequest.getRpslObject();
-                }
-                updates.add(updatePerformer.createUpdate(updateContext, rpslObject, passwords, deleteReason, override));
-            }
-
-            final WhoisResources whoisResources = updatePerformer.performUpdates(updateContext, origin, updates, Keyword.NONE, request);
-
-            for (Update update : updates) {
-                final UpdateStatus status = updateContext.getStatus(update);
-
-                if (status == UpdateStatus.SUCCESS) {
-                    // continue
-                } else if (status == UpdateStatus.FAILED_AUTHENTICATION) {
-                    throw new ReferenceUpdateFailedException(Response.Status.UNAUTHORIZED, whoisResources);
-                } else if (status == UpdateStatus.EXCEPTION) {
-                    throw new ReferenceUpdateFailedException(Response.Status.INTERNAL_SERVER_ERROR, whoisResources);
-                } else if (updateContext.getMessages(update).contains(UpdateMessages.newKeywordAndObjectExists())) {
-                    throw new ReferenceUpdateFailedException(Response.Status.CONFLICT, whoisResources);
-                } else {
-                    throw new ReferenceUpdateFailedException(Response.Status.BAD_REQUEST, whoisResources);
-                }
-            }
-
-            return whoisResources;
-
-        } catch (ReferenceUpdateFailedException e) {
-            throw e;
-        } catch (Exception e) {
-            updatePerformer.logError(e);
-            throw e;
-        } finally {
-            updatePerformer.closeContext();
-        }
     }
 
     private WhoisObject convertToWhoisObject(final RpslObject rpslObject) {
@@ -357,7 +295,7 @@ public class ReferencesService {
         checkForMainSource(request, sourceParam);
 
         try {
-            final WhoisResources updatedResources = performUpdates(request, convertToActionRequests(resource), Collections.<String>emptyList(), "", override, SsoAuthForm.ACCOUNT);
+            final WhoisResources updatedResources = updatePerformer.performUpdates(request, convertToActionRequests(resource), Collections.<String>emptyList(), "", override, SsoAuthType.ACCOUNT);
             return createResponse(request, updatedResources, Response.Status.OK);
 
         } catch (WebApplicationException e) {
@@ -440,7 +378,7 @@ public class ReferencesService {
             actionRequests.add(new ActionRequest(tmpMntnerWithReplacements.rpslObject, Action.DELETE));
 
             // batch update
-            final WhoisResources whoisResources = performUpdates(request, actionRequests, passwords, crowdTokenKey, override, SsoAuthForm.UUID);
+            final WhoisResources whoisResources = updatePerformer.performUpdates(request, actionRequests, passwords, crowdTokenKey, override, SsoAuthType.UUID);
 
             removeDuplicatesAndRestoreReplacedReferences(whoisResources, tmpMntnerWithReplacements);
 
@@ -724,8 +662,6 @@ public class ReferencesService {
             this.replacements = replacements;
         }
     }
-
-    enum SsoAuthForm {ACCOUNT, UUID}
 
     @XmlRootElement(name = "references")
     @JsonInclude(NON_EMPTY)
